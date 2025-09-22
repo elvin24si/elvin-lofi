@@ -24,7 +24,7 @@ Route::get(
     '/matakuliah/show/{param1?}', [MatakuliahController::class, 'show']
 )->name('matakuliah.show');
 
-Route::get('/nama/{param1?}', function ($param1) {
+Route::get('/nama/{param1}', function ($param1) {
     return 'Nama saya: ' . $param1;
 });
 
