@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatakuliahController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -41,3 +42,7 @@ Route::get('/about', function () {
 Route::get('/home', [HomeController::class, 'index']);
 Route::post('question/store', [QuestionController::class, 'store'])
     ->name('question.store');
+
+Route::get('/auth', [AuthController::class, 'index']);
+Route::post('auth/login', [AuthController::class, 'login'])
+    ->name('auth.login');
