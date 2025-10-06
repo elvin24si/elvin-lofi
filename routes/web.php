@@ -40,8 +40,9 @@ Route::get('/about', function () {
 });
 
 Route::get('/home', [HomeController::class, 'index']);
-Route::post('question/store', [QuestionController::class, 'store'])
-    ->name('question.store');
+Route::get('/question/respon', [QuestionController::class, 'respon'])->name('question.respon');
+Route::post('/question/store', [QuestionController::class, 'store'])->name('question.store');
+
 
 Route::get('/auth', [AuthController::class, 'index']);
 Route::post('auth/login', [AuthController::class, 'login'])
