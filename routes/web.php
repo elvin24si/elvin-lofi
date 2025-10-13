@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\MatakuliahController;
 
 Route::get('/', function () {
@@ -53,14 +54,18 @@ Route::get('/auth', [AuthController::class, 'index']);
 
 Route::post('auth/login', [AuthController::class, 'login'])
     ->name('auth.login');
-    
+
 Route::get('/regisvolt', function () {
-    return view('admin/sign-up-volt');})
+    return view('admin/sign-up-volt');
+})
     ->name('regisvolt');
 
 Route::post('/register', [AuthController::class, 'register'])
     ->name('auth.register');
 
 Route::get('/logvolt', function () {
-    return view('admin/sign-in-volt');})
+    return view('admin/sign-in-volt');
+})
     ->name('logvolt');
+
+Route::resource('pelanggan', PelangganController::class);
