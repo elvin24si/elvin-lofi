@@ -80,7 +80,7 @@
         {{-- End Header --}}
 
         {{-- Start Main Content --}}
-        @yield('content')   
+        @yield('content')
         {{-- End Main Content --}}
         {{-- Start Footer --}}
         @include('layouts.admin.footer')

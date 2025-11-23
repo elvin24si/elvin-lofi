@@ -10,9 +10,15 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['dataUser'] = User::all();
+        $filterableColumns = ['email_verified_at'];
+        $searchableColumns = ['name','email'];
+
+        $data['dataUser'] = User::filter($request, $filterableColumns)
+            ->search($request, $searchableColumns)
+            ->paginate(10)->withQueryString();
+
         return view('admin.user.index', $data);
     }
 
@@ -49,10 +55,10 @@ class UserController extends Controller
 
         User::create(
             [
-            'name'     => $validated['name'],
-            'email'    => $validated['email'],
-            'password' => Hash::make($validated['password']),
-        ]);
+                'name'     => $validated['name'],
+                'email'    => $validated['email'],
+                'password' => Hash::make($validated['password']),
+            ]);
 
         return redirect()->route('user.index')->with('success', 'Penambahan Data User Berhasil!');
     }

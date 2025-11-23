@@ -37,7 +37,51 @@
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
-            <table id="table-pelanggan" class="table table-centered table-nowrap mb-0 rounded">
+            <form method="GET" action="{{ route('user.index') }}" onchange="this.form.submit()" class="mb-3">
+                <div class="row">
+                    <div class="col-md-2">
+                        <select name="email_verified" class="form-select">
+                            <option value="">All</option>
+                            <option value="verified" {{ request('email_verified') == 'verified' ? 'selected' : '' }}>
+                                Verified
+                            </option>
+                            <option value="unverified" {{ request('email_verified') == 'unverified' ? 'selected' : '' }}>
+                                Unverified
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control"
+                                   value="{{ request('search') }}"
+                                   placeholder="Search by name, email..." aria-label="Search">
+                            <button type="submit" class="input-group-text">
+                                <svg class="icon icon-xxs" fill="currentColor" viewBox="0 0 20 20"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                          clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            @if (request('search'))
+                                <a href="{{ request()->fullUrlWithQuery(['search' => null]) }}"
+                                   class="btn btn-outline-secondary ml-3">
+                                    Clear
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+            <div class="table-responsive">
+
+            <table id="table-user" class="table table-centered table-nowrap mb-0 rounded">
+                <div class="mt-3">
+                            {{ $dataUser->links('pagination::bootstrap-5') }}
+                        </div>
                 <thead class="thead-light">
                     <tr>
                         <th class="border-0 rounded-start">Nama</th>
