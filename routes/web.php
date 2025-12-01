@@ -56,6 +56,9 @@ Route::get('/auth', [AuthController::class, 'index']);
 Route::post('auth/login', [AuthController::class, 'login'])
     ->name('auth.login');
 
+Route::post('auth/logout', [AuthController::class, 'logout'])
+    ->name('auth.logout');
+
 Route::get('/regisvolt', function () {
     return view('admin/sign-up-volt');
 })

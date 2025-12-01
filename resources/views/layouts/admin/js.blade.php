@@ -1,6 +1,7 @@
     <!-- Core -->
-    <script src="assets-admin/vendor/@popperjs/core/dist/umd/popper.min.js"></script>
-    <script src="assets-admin/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
 
     <!-- Vendor JS -->
     <script src="assets-admin/vendor/onscreen/dist/on-screen.umd.min.js"></script>
