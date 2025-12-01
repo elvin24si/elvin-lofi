@@ -33,6 +33,7 @@ class UserController extends Controller
             'name'     => ['required', 'string', 'max:100'],
             'email'    => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role'     => ['required', 'string'],
         ], [
             'name.required'      => 'Nama wajib diisi.',
             'name.string'        => 'Nama harus berupa teks.',
@@ -52,6 +53,7 @@ class UserController extends Controller
             'name'     => $validated['name'],
             'email'    => $validated['email'],
             'password' => Hash::make($validated['password']),
+            'role'     => $validated['role'],
         ]);
 
         return redirect()->route('user.index')->with('success', 'Penambahan Data User Berhasil!');
@@ -85,6 +87,7 @@ class UserController extends Controller
         $user->name     = $request->name;
         $user->email    = $request->email;
         $user->password = $request->password;
+        $user->role     = $request->role;
 
         $user->save();
         return redirect()->route('user.index')->with('success', 'Perubahan Data User Berhasil!');

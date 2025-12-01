@@ -9,6 +9,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\MatakuliahController;
+use App\Http\Middleware\CheckIsLogin;
+use App\Http\Middleware\CheckRole;
 
 Route::get('/', function () {
     return view('welcome');
@@ -49,14 +51,16 @@ Route::get('/question/respon', [QuestionController::class, 'respon'])->name('que
 Route::post('/question/store', [QuestionController::class, 'store'])->name('question.store');
 
 Route::get('dashboard', [DashboardController::class, 'index'])
-    ->name('dashboard');
+    ->name('dashboard')
+    ->middleware('checkislogin');
 
-Route::get('/auth', [AuthController::class, 'index']);
+Route::get('/auth', [AuthController::class, 'index'])
+    ->name('auth');
 
 Route::post('auth/login', [AuthController::class, 'login'])
     ->name('auth.login');
 
-Route::post('auth/logout', [AuthController::class, 'logout'])
+Route::get('auth/logout', [AuthController::class, 'logout'])
     ->name('auth.logout');
 
 Route::get('/regisvolt', function () {
@@ -64,8 +68,7 @@ Route::get('/regisvolt', function () {
 })
     ->name('regisvolt');
 
-Route::post('/register', [AuthController::class, 'register'])
-    ->name('auth.register');
+
 
 Route::get('/logvolt', function () {
     return view('admin/sign-in-volt');
@@ -73,4 +76,6 @@ Route::get('/logvolt', function () {
     ->name('logvolt');
 
 Route::resource('pelanggan', PelangganController::class);
-Route::resource('user', UserController::class);
+Route::group(['middleware' => ['checkrole:SuperAdmin']], function () {
+    Route::resource('user', UserController::class);
+});

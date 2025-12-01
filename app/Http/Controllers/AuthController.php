@@ -10,6 +10,9 @@ class AuthController extends Controller
 {
     public function index()
     {
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
+        }
         return view('auth.login');
     }
     public function login(Request $request)
@@ -60,8 +63,7 @@ class AuthController extends Controller
         $request->session()->invalidate();      // Hapus semua session
         $request->session()->regenerateToken(); // Cegah CSRF
 
-        // Redirect ke halaman login
-        return redirect()->route('auth.login')->with('success', 'Logged out!');
+        return redirect()->route('auth')->with('success', 'Logged out!');
     }
 
 }
