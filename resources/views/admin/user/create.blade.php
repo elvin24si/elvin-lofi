@@ -91,6 +91,28 @@
                                         <div class="text-danger small mt-1">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <!-- Role -->
+                                <div class="mb-3">
+                                    <label for="role">Role</label>
+                                    <select class="form-control @error('role') is-invalid @enderror" id="role"
+                                        name="role" required>
+                                        <option value="" disabled selected>Pilih Role</option>
+                                        <option value="SuperAdmin"
+                                            {{ old('role') === 'SuperAdmin' ? 'selected' : '' }}>
+                                            Super Admin
+                                        </option>
+                                        <option value="Pelanggan" {{ old('role') === 'Pelanggan' ? 'selected' : '' }}>
+                                            Pelanggan
+                                        </option>
+                                        <option value="Mitra" {{ old('role') === 'Mitra' ? 'selected' : '' }}>
+                                            Mitra
+                                        </option>
+                                    </select>
+                                    @error('role')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
 
                                 <!-- Tombol Submit -->
                                 <div class="text-end">

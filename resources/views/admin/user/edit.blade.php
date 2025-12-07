@@ -87,6 +87,29 @@
                                     @enderror
                                 </div>
 
+                                <!--Role -->
+                                <div class="mb-3">
+                                    <label for="role">Role</label>
+                                    <select class="form-control @error('role') is-invalid @enderror" id="role"
+                                        name="role" required>
+                                        <option value="SuperAdmin"
+                                            {{ $dataUser->role === 'SuperAdmin' ? 'selected' : '' }}>
+                                            Super Admin
+                                        </option>
+                                        <option value="Pelanggan" {{ $dataUser->role === 'Pelanggan' ? 'selected' : '' }}>
+                                            Pelanggan
+                                        </option>
+                                        <option value="Mitra" {{ $dataUser->role === 'Mitra' ? 'selected' : '' }}>
+                                            Mitra
+                                        </option>
+                                    </select>
+                                    @error('role')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+
+
                             </div>
                         </div>
 
